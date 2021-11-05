@@ -1,6 +1,7 @@
 ###########pythoncode.py###############
 import numpy as np
-import sys, os
+import sys
+import os
 from fastapi import FastAPI, UploadFile, File
 from starlette.requests import Request
 import io
@@ -13,16 +14,19 @@ from pydantic import BaseModel
 def read_img(img):
     pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
     # pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-    text = pytesseract.image_to_string(img)
+    text = pytesseract.image_to_string(img, lang='kor+eng')
     return(text)
- 
+
+
 app = FastAPI()
+
 
 class ImageType(BaseModel):
     url: str
 
-@app.post("/predict/") 
-def prediction(request :Request, file: bytes = File(...)):
+
+@app.post("/predict/")
+def prediction(request: Request, file: bytes = File(...)):
     if request.method == "POST":
         image_stream = io.BytesIO(file)
         image_stream.seek(0)
