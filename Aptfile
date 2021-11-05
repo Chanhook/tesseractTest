@@ -1,4 +1,5 @@
 tesseract-ocr
+tesseract-ocr-kor
 tesseract-ocr-eng
 libtesseract-dev
 libatlas-base-dev
