@@ -15,7 +15,8 @@ def read_img(img):
     pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
     # pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
     custom_config = '--psm 1 -c preserve_interword_spaces=1'
-    text = pytesseract.image_to_string(img, lang='eng', config=custom_config)
+    text = pytesseract.image_to_string(
+        img, lang='kor+eng', config=custom_config)
     return(text)
 
 
