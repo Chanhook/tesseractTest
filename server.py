@@ -14,8 +14,8 @@ from pydantic import BaseModel
 def read_img(img):
     pytesseract.pytesseract.tesseract_cmd = '/app/.apt/usr/bin/tesseract'
     # pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-    custom_config = r'--oem 3 --psm 6 outputbase digits'
-    text = pytesseract.image_to_string(img, config=custom_config)
+    custom_config = '--psm 1 -c preserve_interword_spaces=1'
+    text = pytesseract.image_to_string(img, lang='eng', config=custom_config)
     return(text)
 
 
